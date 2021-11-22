@@ -1,0 +1,9 @@
+.activeLink {
+  color: #0d1c2e;
+  text-decoration: none;
+}
+
+.activeLink:hover,
+.activeLink:active {
+  color: #2a8bf2;
+}
