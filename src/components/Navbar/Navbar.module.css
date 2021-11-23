@@ -1,3 +1,16 @@
+.nav {
+  grid-area: nav;
+  background-color: #fff;
+  padding: 20px;
+}
+.item {
+  margin: 15px 0;
+  border-bottom: 1px solid #f1f1f1;
+  font-weight: 700;
+}
+.item:hover {
+  border-bottom: 1px solid #dc4734;
+}
 .activeLink {
   color: #0d1c2e;
   text-decoration: none;
@@ -5,5 +18,5 @@
 
 .activeLink:hover,
 .activeLink:active {
-  color: #2a8bf2;
+  color: #dc4734;
 }
