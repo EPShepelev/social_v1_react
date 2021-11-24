@@ -12,15 +12,15 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 
-const App = (props) => (
+const App = ({dialogsData, messagesData, postsData}) => (
   <BrowserRouter>
     <div className="container">
       <Header />
       <Navbar />
       <div className="content-wrapper">
         <Routes>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dialogs" element={<Dialogs />}>
+          <Route path="/profile" element={<Profile postsData={postsData}/>} />
+          <Route path="/dialogs" element={<Dialogs dialogsData={dialogsData} messagesData={messagesData}/>}>
             <Route path=":id" element={<Dialogs />} />
           </Route>
           <Route path="/news" element={<News />} />

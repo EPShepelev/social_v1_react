@@ -4,10 +4,10 @@ import Posts from "../Posts/Posts";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import style from "./Profile.module.css";
 
-const Profile = () => (
+const Profile = ({postsData}) => (
   <div>
     <ProfileInfo />
-    <Posts />
+    <Posts postsData={postsData}/>
   </div>
 )
 
