@@ -1,6 +1,16 @@
-
-.dialogsItems {
+.item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.item {
+.itemLink {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.itemLink:hover,
+.itemLink:active {
+  color: #dc4734;
 }

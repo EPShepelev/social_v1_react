@@ -1,5 +1,23 @@
-.messages {
+.message {
+  margin: 20px 5px;
+  text-align: left;
 }
 
-.message {
+.message span {
+  border: 1px solid #dc4734;
+  border-radius: 10px;
+  padding: 5px;
+  color: #dc4734;
+}
+
+.messageRight {
+  margin: 20px 5px;
+  text-align: right;
+}
+
+.messageRight span {
+  border: 1px solid #00008b;
+  color: #00008b;
+  border-radius: 10px;
+  padding: 5px;
 }

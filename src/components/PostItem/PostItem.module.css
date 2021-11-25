@@ -4,9 +4,3 @@
   align-items: center;
   justify-content: flex-start;
 }
-.postItem__avatar img {
-  width: 50px;
-  height: auto;
-  border-radius: 50%;
-  margin: 10px 20px;
-}

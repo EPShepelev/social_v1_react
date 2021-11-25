@@ -1,13 +1,13 @@
 import React from "react";
 
+import Avatar from "../Avatar/Avatar";
+
 import style from "./PostItem.module.css";
-import avatar from './avatar.jpeg';
+
 
 const PostItem = ({text, likes}) => (
   <div className={style.postItem__container}>
-  <div className={style.postItem__avatar}>
-    <img src={avatar} alt="user avatar"></img>
-  </div>
+  <Avatar />
   <div likes={likes}>{text}</div>
   </div>
 )

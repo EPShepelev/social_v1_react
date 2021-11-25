@@ -6,13 +6,13 @@ import style from "./Dialogs.module.css";
 
 
 
-const Dialogs = ({dialogsData, messagesData}) => (
+const Dialogs = ({state}) => (
 <div className={style.dialogs}>
   <div className={style.dialosItems}>
-    {dialogsData.map(dialog => <DialogItem id={dialog.id} name={dialog.name} />)}
+    {state.dialogsData.map(dialog => <DialogItem id={dialog.id} name={dialog.name} />)}
   </div>
   <div className={style.messages}>
-    {messagesData.map(message => <Message text={message.text} />)}
+    {state.messagesData.map(message => <Message isYours={message.isYours} text={message.text} />)}
   </div>
 </div>)
 
