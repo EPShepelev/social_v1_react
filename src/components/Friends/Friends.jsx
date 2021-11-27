@@ -2,6 +2,13 @@ import React from "react";
 
 import Avatar from "../Avatar/Avatar";
 
-const Friends = ({ id, name }) => (<div><Avatar/><div>{name}</div></div>);
+import style from "./Friends.module.css";
 
-export default  Friends
+const Friends = ({ id, name }) => (
+  <div className={style.friendsBlock}>
+    <Avatar />
+    <div>{name}</div>
+  </div>
+);
+
+export default Friends;

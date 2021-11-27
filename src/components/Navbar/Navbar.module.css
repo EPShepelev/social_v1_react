@@ -20,3 +20,16 @@
 .activeLink:active {
   color: #dc4734;
 }
+
+.friendsTitle {
+  color: #0d1c2e;
+  font-weight: 700;
+  margin-top: 40px;
+}
+
+.friendsInner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

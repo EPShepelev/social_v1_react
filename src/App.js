@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
@@ -12,15 +12,18 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 
-const App = ({state}) => (
+const App = ({ state, addPost }) => (
   <BrowserRouter>
     <div className="container">
       <Header />
       <Navbar state={state.friends} />
       <div className="content-wrapper">
         <Routes>
-          <Route path="/profile" element={<Profile state={state.profile}/>} />
-          <Route path="/dialogs" element={<Dialogs state={state.dialogs}/>}>
+          <Route
+            path="/profile"
+            element={<Profile state={state.profile} addPost={addPost} />}
+          />
+          <Route path="/dialogs" element={<Dialogs state={state.dialogs} />}>
             <Route path=":id" element={<Dialogs />} />
           </Route>
           <Route path="/news" element={<News />} />
