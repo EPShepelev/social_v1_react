@@ -2,18 +2,26 @@ import React from "react";
 
 import style from "./InputText.module.css";
 
-const newPost = React.createRef();
+const InputText = ({ addPost, newPostText, updateNewPostText }) => {
+  const newPost = React.createRef();
 
-const InputText = ({ addPost }) => {
   const onAddPost = () => {
-    let text = newPost.current.value;
-    addPost(text);
-    newPost.current.value = "";
+    addPost();
   };
+
+  const onInputChange = () => {
+    let text = newPost.current.value;
+    updateNewPostText(text);
+  };
+
   return (
     <div className={style.postAdd__wrapper}>
       <div className={style.postAdd__text}>
-        <textarea ref={newPost}></textarea>
+        <textarea
+          ref={newPost}
+          onChange={onInputChange}
+          value={newPostText}
+        ></textarea>
       </div>
       <button className={style.postAdd__btn} onClick={onAddPost}>
         Add post!

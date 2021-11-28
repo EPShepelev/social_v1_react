@@ -12,7 +12,13 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 
-const App = ({ state, addPost }) => (
+const App = ({
+  state,
+  addPost,
+  updateNewPostText,
+  addMessage,
+  updateNewMessageText,
+}) => (
   <BrowserRouter>
     <div className="container">
       <Header />
@@ -21,9 +27,24 @@ const App = ({ state, addPost }) => (
         <Routes>
           <Route
             path="/profile"
-            element={<Profile state={state.profile} addPost={addPost} />}
+            element={
+              <Profile
+                state={state.profile}
+                addPost={addPost}
+                updateNewPostText={updateNewPostText}
+              />
+            }
           />
-          <Route path="/dialogs" element={<Dialogs state={state.dialogs} />}>
+          <Route
+            path="/dialogs"
+            element={
+              <Dialogs
+                state={state.dialogs}
+                addMessage={addMessage}
+                updateNewMessageText={updateNewMessageText}
+              />
+            }
+          >
             <Route path=":id" element={<Dialogs />} />
           </Route>
           <Route path="/news" element={<News />} />
