@@ -14,10 +14,7 @@ import Footer from "./components/Footer/Footer";
 
 const App = ({
   state,
-  addPost,
-  updateNewPostText,
-  addMessage,
-  updateNewMessageText,
+  dispatch,
 }) => (
   <BrowserRouter>
     <div className="container">
@@ -30,8 +27,7 @@ const App = ({
             element={
               <Profile
                 state={state.profile}
-                addPost={addPost}
-                updateNewPostText={updateNewPostText}
+                dispatch={dispatch}
               />
             }
           />
@@ -40,8 +36,7 @@ const App = ({
             element={
               <Dialogs
                 state={state.dialogs}
-                addMessage={addMessage}
-                updateNewMessageText={updateNewMessageText}
+                dispatch={dispatch}
               />
             }
           >

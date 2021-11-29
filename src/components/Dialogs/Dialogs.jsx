@@ -2,19 +2,19 @@ import React from "react";
 
 import DialogItem from "../DialogItem/DialogItem";
 import Message from "../Message/Message";
-import InputText from "../InputText/InputText";
+// import InputText from "../InputText/InputText";
 import style from "./Dialogs.module.css";
 
-const Dialogs = ({ state, newMessage, addMessage, updateNewMessageText }) => {
+const Dialogs = ({ state, dispatch }) => {
   const newMessageEl = React.createRef();
 
   const onAddMessage = () => {
-    addMessage();
+    dispatch({type: "ADD-MESSAGE"});
   };
 
   const onTextChange = () => {
     let text = newMessageEl.current.value;
-    updateNewMessageText(text);
+    dispatch({type: "UPDATE-NEW-MESSAGE-TEXT", newMessage: text});
   };
 
   return (
@@ -31,13 +31,13 @@ const Dialogs = ({ state, newMessage, addMessage, updateNewMessageText }) => {
           ))}
         </div>
       </div>
-      {/* <InputText /> */}
+      {/* <InputText dispatch={dispatch} newMessage={??? how ???} /> */}
       <textarea
         ref={newMessageEl}
         onChange={onTextChange}
-        value={newMessage}
+        value={state.newMessageText}
       ></textarea>
-      <button onClick={onAddMessage}>Add post!</button>
+      <button onClick={onAddMessage}>Send message!</button>
     </>
   );
 };

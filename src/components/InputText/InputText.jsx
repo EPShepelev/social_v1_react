@@ -2,16 +2,18 @@ import React from "react";
 
 import style from "./InputText.module.css";
 
-const InputText = ({ addPost, newPostText, updateNewPostText }) => {
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/state.js"
+
+const InputText = ({ newPostText, dispatch }) => {
   const newPost = React.createRef();
 
   const onAddPost = () => {
-    addPost();
+    dispatch(addPostActionCreator());
   };
 
   const onInputChange = () => {
     let text = newPost.current.value;
-    updateNewPostText(text);
+    dispatch(updateNewPostTextActionCreator(text));
   };
 
   return (
