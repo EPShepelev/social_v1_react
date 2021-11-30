@@ -6,7 +6,7 @@ import App from "./App";
 
 import "./index.css";
 
-import store from "./redux/state";
+import store from "./redux/redux-store";
 
 const rerenderDom = (state) => {
   ReactDOM.render(
@@ -21,7 +21,11 @@ const rerenderDom = (state) => {
 };
 
 rerenderDom(store.getState());
-store.subscribe(rerenderDom);
+
+store.subscribe(()=> {
+  const state = store.getState();
+  rerenderDom(state);
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

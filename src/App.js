@@ -19,7 +19,7 @@ const App = ({
   <BrowserRouter>
     <div className="container">
       <Header />
-      <Navbar state={state.friends} />
+      <Navbar state={state.friends}/>
       <div className="content-wrapper">
         <Routes>
           <Route

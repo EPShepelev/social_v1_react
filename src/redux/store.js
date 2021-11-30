@@ -125,5 +125,4 @@ const store = {
   }
 };
 
-window.store = store;
 export default store;
