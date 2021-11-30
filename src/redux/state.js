@@ -1,7 +1,6 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import friendsReducer from "./friends-reducer";
 
 const store = {
   _callSubscriber() {
@@ -119,43 +118,12 @@ const store = {
     this._callSubscriber = observer;
   },
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      const newPost = {
-        id: 5,
-        likes: 0,
-        text: this._state.profile.newPostText,
-      };
-      this._state.profile.postsData.push(newPost);
-      this._state.profile.newPostText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profile.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === ADD_MESSAGE) {
-      const newMessage = {
-        id: 6,
-        text: this._state.dialogs.newMessageText,
-        isYours: true,
-      };
-      this._state.dialogs.messagesData.push(newMessage);
-      this._state.dialogs.newMessageText = "";
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogs.newMessageText = action.newMessage;
-      this._callSubscriber(this._state);
-    }
+    this._state.profile = profileReducer(this._state.profile, action);
+    this._state.dialogs = dialogsReducer(this._state.dialogs, action);
+    this._state.friends = friendsReducer(this._state.friends, action);
+    this._callSubscriber(this._state);
   }
 };
-
-export const addPostActionCreator = () => ({type: ADD_POST})
-
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-
-export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text})
 
 window.store = store;
 export default store;

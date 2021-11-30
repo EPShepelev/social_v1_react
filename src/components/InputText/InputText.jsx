@@ -2,25 +2,22 @@ import React from "react";
 
 import style from "./InputText.module.css";
 
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/state.js"
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/profile-reducer";
 
 const InputText = ({ newPostText, dispatch }) => {
-  const newPost = React.createRef();
 
   const onAddPost = () => {
     dispatch(addPostActionCreator());
   };
 
-  const onInputChange = () => {
-    let text = newPost.current.value;
-    dispatch(updateNewPostTextActionCreator(text));
+  const onInputChange = (e) => {
+    dispatch(updateNewPostTextActionCreator(e.target.value));
   };
 
   return (
     <div className={style.postAdd__wrapper}>
       <div className={style.postAdd__text}>
         <textarea
-          ref={newPost}
           onChange={onInputChange}
           value={newPostText}
         ></textarea>
