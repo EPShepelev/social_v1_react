@@ -1,21 +1,16 @@
 import React from "react";
-
 import DialogItem from "../DialogItem/DialogItem";
 import Message from "../Message/Message";
-// import InputText from "../InputText/InputText";
-
 import style from "./Dialogs.module.css";
 
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
-
-const Dialogs = ({ state, dispatch }) => {
+const Dialogs = ({ state, addMessage, textChange }) => {
 
   const onAddMessage = () => {
-    dispatch(addMessageActionCreator());
+    addMessage();
   };
 
   const onTextChange = (e) => {
-    dispatch(updateNewMessageTextActionCreator(e.target.value));
+    textChange(e.target.value);
   };
 
   return (
@@ -32,7 +27,6 @@ const Dialogs = ({ state, dispatch }) => {
           ))}
         </div>
       </div>
-      {/* <InputText dispatch={dispatch} newMessage={??? how ???} /> */}
       <textarea
         onChange={onTextChange}
         value={state.newMessageText}

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
-import Dialogs from "./components/Dialogs/Dialogs";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
@@ -34,13 +34,13 @@ const App = ({
           <Route
             path="/dialogs"
             element={
-              <Dialogs
+              <DialogsContainer
                 state={state.dialogs}
                 dispatch={dispatch}
               />
             }
           >
-            <Route path=":id" element={<Dialogs />} />
+            <Route path=":id" element={<DialogsContainer />} />
           </Route>
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />

@@ -1,17 +1,14 @@
 import React from "react";
-
 import style from "./InputText.module.css";
 
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/profile-reducer";
-
-const InputText = ({ newPostText, dispatch }) => {
+const InputText = ({ addPost, updateNewPostText, newPostText }) => {
 
   const onAddPost = () => {
-    dispatch(addPostActionCreator());
+    addPost();
   };
 
   const onInputChange = (e) => {
-    dispatch(updateNewPostTextActionCreator(e.target.value));
+    updateNewPostText(e.target.value);
   };
 
   return (
