@@ -2,16 +2,9 @@ import React from "react";
 import DialogItem from "../DialogItem/DialogItem";
 import Message from "../Message/Message";
 import style from "./Dialogs.module.css";
+import InputMessageContainer from "../InputMessage/InputMessageContainer";
 
-const Dialogs = ({ state, addMessage, textChange }) => {
-
-  const onAddMessage = () => {
-    addMessage();
-  };
-
-  const onTextChange = (e) => {
-    textChange(e.target.value);
-  };
+const Dialogs = ({ state }) => {
 
   return (
     <>
@@ -27,11 +20,7 @@ const Dialogs = ({ state, addMessage, textChange }) => {
           ))}
         </div>
       </div>
-      <textarea
-        onChange={onTextChange}
-        value={state.newMessageText}
-      ></textarea>
-      <button onClick={onAddMessage}>Send message!</button>
+      <InputMessageContainer />
     </>
   );
 };

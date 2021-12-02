@@ -1,20 +1,20 @@
 import reportWebVitals from "./reportWebVitals";
 import React from "react";
 import ReactDOM from "react-dom";
-
 import App from "./App";
-
 import "./index.css";
-
 import store from "./redux/redux-store";
+import { Provider } from "react-redux";
 
 const rerenderDom = (state) => {
   ReactDOM.render(
     <React.StrictMode>
+      <Provider store={store}>
       <App
         state={state}
         dispatch={store.dispatch.bind(store)}
       />
+      </Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );

@@ -1,12 +1,11 @@
 import React from "react";
-
 import PostItem from "../PostItem/PostItem";
-import InputTextContainer from "../InputText/InputTextContainer";
+import InputPostContainer from "../InputPost/InputPostContainer";
 import style from "./Posts.module.css";
 
 const Posts = ({ postsData, newPostText, dispatch }) => (
   <>
-    <InputTextContainer
+    <InputPostContainer
       newPostText={newPostText}
       dispatch={dispatch}
     />

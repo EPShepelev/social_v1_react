@@ -1,7 +1,7 @@
 import React from "react";
-import style from "./InputText.module.css";
+import style from "./InputPost.module.css";
 
-const InputText = ({ addPost, updateNewPostText, newPostText }) => {
+const InputPost = ({ addPost, updateNewPostText, newPostText}) => {
 
   const onAddPost = () => {
     addPost();
@@ -26,4 +26,4 @@ const InputText = ({ addPost, updateNewPostText, newPostText }) => {
   );
 };
 
-export default InputText;
+export default InputPost;
