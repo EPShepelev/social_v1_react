@@ -7,7 +7,7 @@ import InputMessageContainer from "../InputMessage/InputMessageContainer";
 const Dialogs = ({ state }) => {
 
   return (
-    <>
+    <div className={style.wrapper}>
       <div className={style.dialogs}>
         <div className={style.dialosItems}>
           {state.dialogsData.map((dialog) => (
@@ -21,7 +21,7 @@ const Dialogs = ({ state }) => {
         </div>
       </div>
       <InputMessageContainer />
-    </>
+    </div>
   );
 };
 

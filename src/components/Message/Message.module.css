@@ -4,10 +4,10 @@
 }
 
 .message span {
-  border: 1px solid #dc4734;
-  border-radius: 10px;
+  border: 1px solid #e36a5b;
+  border-radius: 20px;
   padding: 5px;
-  color: #dc4734;
+  color: #e36a5b;
 }
 
 .messageRight {
@@ -16,8 +16,9 @@
 }
 
 .messageRight span {
-  border: 1px solid #00008b;
-  color: #00008b;
-  border-radius: 10px;
+  border: none;
+  background-color: #e36a5b;
+  color: #fff;
+  border-radius: 20px;
   padding: 5px;
 }

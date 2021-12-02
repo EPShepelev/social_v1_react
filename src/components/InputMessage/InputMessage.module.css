@@ -1,5 +1,14 @@
+.postAdd__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .postAdd__text {
   margin: 0 20px;
+  text-align: center;
+  width: 100%;
 }
 
 .postAdd__text textarea {
@@ -14,12 +23,14 @@
 
 .postAdd__btn {
   display: block;
+  width: 170px;
+  height: 45px;
   color: #fff;
   background-color: #dc4734;
-  padding: 11px 25px;
+  padding: 10px;
   border-radius: 20px;
   border: none;
-  margin: 10px auto 30px;
+  margin: 0 10px;
   cursor: pointer;
 }
 

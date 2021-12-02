@@ -2,3 +2,10 @@
   grid-area: footer;
   background-color: #fff;
 }
+
+.content {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
