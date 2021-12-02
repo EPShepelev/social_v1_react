@@ -3,12 +3,9 @@ import PostItem from "../PostItem/PostItem";
 import InputPostContainer from "../InputPost/InputPostContainer";
 import style from "./Posts.module.css";
 
-const Posts = ({ postsData, newPostText, dispatch }) => (
+const Posts = ({ postsData }) => (
   <>
-    <InputPostContainer
-      newPostText={newPostText}
-      dispatch={dispatch}
-    />
+    <InputPostContainer />
     <div>
       {postsData.map((post) => (
         <PostItem likes={post.likes} text={post.text} />

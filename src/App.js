@@ -10,10 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 
-const App = ({
-  state,
-  dispatch,
-}) => (
+const App = ({state}) => (
   <BrowserRouter>
     <div className="container">
       <Header />
@@ -25,7 +22,6 @@ const App = ({
             element={
               <Profile
                 state={state.profile}
-                dispatch={dispatch}
               />
             }
           />
@@ -34,7 +30,6 @@ const App = ({
             element={
               <Dialogs
                 state={state.dialogs}
-                dispatch={dispatch}
               />
             }
           >
