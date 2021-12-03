@@ -1,6 +1,10 @@
-.friendsBlock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
+
+.item {
+  text-align: center;
+}
+
+

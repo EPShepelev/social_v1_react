@@ -4,7 +4,7 @@ import Friends from "../Friends/Friends";
 
 import style from "./Navbar.module.css";
 
-const Navbar = ({ state }) => (
+const Navbar = () => (
   <nav className={style.nav}>
     <div className={style.item}>
       <Link to="/profile" className={style.activeLink}>
@@ -27,15 +27,18 @@ const Navbar = ({ state }) => (
       </Link>
     </div>
     <div className={style.item}>
+      <Link to="/users" className={style.activeLink}>
+        Users
+      </Link>
+    </div>
+    <div className={style.item}>
       <Link to="/settings" className={style.activeLink}>
         Settings
       </Link>
     </div>
     <div className={style.friendsTitle}>Friends</div>
-    <div className={style.friendsInner}>
-      {state.friendsList.map((friend) => (
-        <Friends name={friend.name} />
-      ))}
+    <div>
+        <Friends />
     </div>
   </nav>
 );

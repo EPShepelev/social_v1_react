@@ -3,20 +3,29 @@ import DialogItem from "../DialogItem/DialogItem";
 import Message from "../Message/Message";
 import style from "./Dialogs.module.css";
 import InputMessageContainer from "../InputMessage/InputMessageContainer";
+import { connect } from "react-redux";
 
-const Dialogs = ({ state }) => {
+
+const mapStateToProps = (state) => {
+  return {
+    dialogsData: state.dialogs.dialogsData,
+    messagesData: state.dialogs.messagesData
+  }
+}
+
+const Dialogs = ({ dialogsData, messagesData }) => {
 
   return (
     <div className={style.wrapper}>
       <div className={style.dialogs}>
         <div className={style.dialosItems}>
-          {state.dialogsData.map((dialog) => (
-            <DialogItem id={dialog.id} name={dialog.name} />
+          {dialogsData.map((dialog) => (
+            <DialogItem key={dialog.id} name={dialog.name} />
           ))}
         </div>
         <div className={style.messages}>
-          {state.messagesData.map((message) => (
-            <Message isYours={message.isYours} text={message.text} />
+          {messagesData.map((message) => (
+            <Message key={message.id} isYours={message.isYours} text={message.text} />
           ))}
         </div>
       </div>
@@ -25,4 +34,4 @@ const Dialogs = ({ state }) => {
   );
 };
 
-export default Dialogs;
+export default connect (mapStateToProps) (Dialogs);

@@ -1,15 +1,23 @@
 const initialState = {
   friendsList: [{
       id: 1,
-      name: "Ахиллес"
+      name: "Платон"
     },
     {
       id: 2,
-      name: "Эзоп"
+      name: "Аристотель"
     },
     {
       id: 3,
       name: "Плутарх"
+    },
+    {
+      id: 4,
+      name: "Диоген"
+    },
+    {
+      id: 5,
+      name: "How's your greed?"
     },
   ],
 }

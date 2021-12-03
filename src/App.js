@@ -9,35 +9,23 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = ({state}) => (
   <BrowserRouter>
     <div className="container">
       <Header />
-      <Navbar state={state.friends}/>
+      <Navbar />
       <div className="content-wrapper">
         <Routes>
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                state={state.profile}
-              />
-            }
-          />
-          <Route
-            path="/dialogs"
-            element={
-              <Dialogs
-                state={state.dialogs}
-              />
-            }
-          >
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/dialogs" element={ <Dialogs/>}>
             <Route path=":id" element={<Dialogs />} />
           </Route>
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/users" element={<UsersContainer />} />
         </Routes>
       </div>
       <Footer />
