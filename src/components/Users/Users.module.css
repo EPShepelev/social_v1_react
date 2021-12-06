@@ -1,0 +1,9 @@
+.paginationList span {
+  margin: 0 8px;
+  cursor: pointer;
+
+}
+
+.active {
+  font-weight: 700;
+}

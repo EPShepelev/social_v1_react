@@ -1,27 +1,82 @@
+import React, { useEffect } from "react";
+import * as axios from "axios";
 import Users from "./Users";
 import { connect } from "react-redux";
-import { followAC, setUsersAC, unfollowAC } from "../../redux/users-reducer";
+import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC } from "../../redux/users-reducer";
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users
+    users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
+    currentPage: state.usersPage.currentPage,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    follow: (udrId) => {
-      dispatch(followAC(udrId))
+    follow: (userId) => {
+      dispatch(followAC(userId))
     },
-    unfollow: (udrId) => {
-      dispatch(unfollowAC(udrId))
+    unfollow: (userId) => {
+      dispatch(unfollowAC(userId))
     },
     setUsers: (users) => {
       dispatch(setUsersAC(users))
+    },
+    setCurrentPage: (page) => {
+      dispatch(setCurrentPageAC(page))
+    },
+    setTotalUsersCount: (count) => {
+      dispatch(setTotalUsersCountAC(count))
     }
   }
 }
 
-const UsersContainer = connect (mapStateToProps, mapDispatchToProps) (Users)
+const UsersContainer = ({
+  users,
+  follow,
+  unfollow,
+  setUsers,
+  pageSize,
+  totalUsersCount,
+  currentPage,
+  setCurrentPage,
+  setTotalUsersCount,
+}) => {
+  const onPageChanged = (page) => {
+    setCurrentPage(page);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`
+      )
+      .then((response) => {
+        setUsers(response.data.items);
+      });
+  };
 
-export default UsersContainer;
+  useEffect(() => {
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`
+      )
+      .then((response) => {
+        setUsers(response.data.items);
+        setTotalUsersCount(response.data.totalCount);
+      });
+  }, [setUsers]);
+
+  return (
+    <Users
+      users={users}
+      follow={follow}
+      unfollow={unfollow}
+      pageSize={pageSize}
+      totalUsersCount={totalUsersCount}
+      currentPage={currentPage}
+      onPageChanged={onPageChanged}
+    />
+  );
+};
+
+export default connect (mapStateToProps, mapDispatchToProps) (UsersContainer)
