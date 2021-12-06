@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const Posts = ({ postsData }) => (
   <>
     <InputPostContainer />
-    <div>
+    <div className={style.inner}>
       {postsData.map((post) => (
         <PostItem key={post.id} likes={post.likes} text={post.text} />
       ))}

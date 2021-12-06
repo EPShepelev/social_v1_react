@@ -4,7 +4,7 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import style from "./Profile.module.css";
 
 const Profile = () => (
-  <div>
+  <div className={style.inner}>
     <ProfileInfo />
     <Posts />
   </div>
