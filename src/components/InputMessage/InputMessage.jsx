@@ -3,24 +3,35 @@ import style from "./InputMessage.module.css";
 
 const InputMessage = ({ addMessage }) => {
   const [message, setMessage] = useState("");
-  const [maxMessageLength, setMaxMessageLength] = useState(false);
+  const [messageLength, setMessageLength] = useState(0);
+  const [inputClassList, setInputClassList] = useState([]);
 
   const onAddMessage = (text) => {
+    if (messageLength === 7) {
+     text+= "!!!";
+    }
     addMessage(text);
     setMessage("");
   };
 
   useEffect(() => {
-    message.length > 10 //<5 символов - шрифт 20пх; если ровно 7 то добавить к отправленному "!!!!"
-      ? setMaxMessageLength(true)
-      : setMaxMessageLength(false);
+      setMessageLength(message.length);
+      if (messageLength < 5) {
+        setInputClassList(style.font)
+      }
+      else if (messageLength > 10) {
+        setInputClassList(style.color)
+      }
+      else {
+        setInputClassList([])
+      }
   }, [message]);
 
   return (
     <div className={style.postAdd__wrapper}>
       <div className={style.postAdd__text}>
         <textarea
-          className={maxMessageLength ? style.color : ""}
+        className={inputClassList}
           onChange={(e) => {
             setMessage(e.target.value);
           }}
