@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 
 const User = ({user, follow, unfollow}) => {
   return (
     <div>
-      <Avatar avatar={user.photos.small}/>
+      <Link to={`/profile/${user.id}`}>
+        <Avatar avatar={user.photos.small}/>
+      </Link>
       {user.followed ? (
         <button onClick={() => {unfollow(user.id)}}>unfollow</button>
       ) : (

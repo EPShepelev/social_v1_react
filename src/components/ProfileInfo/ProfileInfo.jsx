@@ -1,15 +1,23 @@
 import React from "react";
-
 import style from "./ProfileInfo.module.css";
-import avatar from './avatar.jpeg';
+import Avatar from "../Avatar/Avatar";
+import Preloader from "../common/Preloader/Preloader";
 
-const ProfileInfo = () => (
-  <div className={style.profileInfo}>
+const ProfileInfo = ({profile}) => {
+  if (!profile) {
+    return  <Preloader />
+  }
+  return ( <div className={style.profileInfo}>
     <div className={style.profileInfo__avatar}>
-      <img src={avatar} alt="user avatar"></img>
+      <Avatar avatar={profile.photos.large}/>
     </div>
-    <div>description</div>
-  </div>
-);
+    <div>
+      <div>{profile.fullName}</div>
+      <div>{profile.aboutMe}</div>
+      <div>{profile.contacts.facebook}</div>
+    </div>
+  </div>)
+ 
+  };
 
 export default ProfileInfo;
