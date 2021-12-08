@@ -18,7 +18,7 @@ const App = ({state}) => (
       <Navbar />
       <div className="content-wrapper">
         <Routes>
-          <Route path="/profile" element={<ProfileContainer />} />
+          <Route path="/profile/:userId?" element={<ProfileContainer />} />
           <Route path="/dialogs" element={ <Dialogs/>}>
             <Route path=":id" element={<Dialogs />} />
           </Route>

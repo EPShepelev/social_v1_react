@@ -17,7 +17,6 @@ const ProfileInfo = ({profile}) => {
       <div>{profile.contacts.facebook}</div>
     </div>
   </div>)
- 
   };
 
 export default ProfileInfo;
