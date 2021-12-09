@@ -16,7 +16,7 @@ const ProfileContainer = ({ profile, setUserProfile }) => {
   let { id } = useParams()
 
   useEffect(() => {
-    if(!id) { id = 2 }
+    if(!id) { id = 21277 } //id моего профиля
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/profile/${id}`
