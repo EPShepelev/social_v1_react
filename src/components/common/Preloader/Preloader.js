@@ -2,7 +2,7 @@ import loader from "../../../assets/img/loader.gif";
 
 const Preloader = () => {
   return (
-    <img src={loader}/>
+    <img src={loader} alt="loading...wait a second"/>
   )
 }
 
