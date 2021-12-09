@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import * as axios from "axios";
 import Users from "./Users";
 import { connect } from "react-redux";
-import { follow, unfollow, toggleIsFetching, setUsers, setCurrentPage, setTotalUsersCount } from "../../redux/users-reducer";
+import {
+  follow,
+  unfollow,
+  toggleIsFetching,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+} from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 
 const mapStateToProps = (state) => {
@@ -11,9 +18,9 @@ const mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching
-  }
-}
+    isFetching: state.usersPage.isFetching,
+  };
+};
 
 const UsersContainer = ({
   users,
@@ -30,10 +37,13 @@ const UsersContainer = ({
 }) => {
   const onPageChanged = (page) => {
     setCurrentPage(page);
-    toggleIsFetching(true)
+    toggleIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
         toggleIsFetching(false);
@@ -42,10 +52,13 @@ const UsersContainer = ({
   };
 
   useEffect(() => {
-    toggleIsFetching(true)
+    toggleIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
         toggleIsFetching(false);
@@ -56,7 +69,7 @@ const UsersContainer = ({
 
   return (
     <>
-    {isFetching ?  <Preloader /> : null}
+      {isFetching ? <Preloader /> : null}
       <Users
         users={users}
         follow={follow}
@@ -70,11 +83,11 @@ const UsersContainer = ({
   );
 };
 
-export default connect (mapStateToProps, {
+export default connect(mapStateToProps, {
   follow,
   unfollow,
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
-}) (UsersContainer)
+})(UsersContainer);
