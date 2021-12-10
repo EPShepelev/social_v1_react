@@ -17,7 +17,7 @@ const User = ({
       </Link>
       {user.followed ? (
         <button
-          disabled={isFollingProgress.some(id=> id === user.id)}
+          disabled={isFollingProgress.some(id => id === user.id)}
           onClick={() => {
             toggleFollingProgress(true, user.id);
             UsersAPI.unfollowUser(user.id).then((data) => {
