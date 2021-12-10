@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import * as axios from "axios";
+import { UsersAPI } from "../../api/api";
 import Users from "./Users";
 import { connect } from "react-redux";
 import {
@@ -38,33 +38,19 @@ const UsersContainer = ({
   const onPageChanged = (page) => {
     setCurrentPage(page);
     toggleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        toggleIsFetching(false);
-        setUsers(response.data.items);
-      });
+    UsersAPI.getUsers(page, pageSize).then((data) => {
+      toggleIsFetching(false);
+      setUsers(data.items);
+    });
   };
 
   useEffect(() => {
     toggleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        toggleIsFetching(false);
-        setUsers(response.data.items);
-        setTotalUsersCount(response.data.totalCount);
-      });
+    UsersAPI.getUsers(currentPage, pageSize).then((data) => {
+      toggleIsFetching(false);
+      setUsers(data.items);
+      setTotalUsersCount(data.totalCount);
+    });
   }, [setUsers]);
 
   return (

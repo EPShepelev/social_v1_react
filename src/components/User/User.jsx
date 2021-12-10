@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as axios from "axios";
+import { UsersAPI } from "../../api/api";
 import Avatar from "../Avatar/Avatar";
 
 const User = ({ user, follow, unfollow }) => {
@@ -12,18 +12,9 @@ const User = ({ user, follow, unfollow }) => {
       {user.followed ? (
         <button
           onClick={() => {
-            axios
-              .delete(
-                `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                {
-                  withCredentials: true,
-                  headers: {
-                    "API-KEY": "be9a2f09-e73c-47b1-938e-5e4d5e8badb9",
-                  },
-                }
-              )
-              .then((response) => {
-                if (response.data.resultCode === 0) {
+            UsersAPI.unfollowUser(user.id)
+              .then((data) => {
+                if (data.resultCode === 0) {
                   unfollow(user.id);
                 }
               });
@@ -34,19 +25,9 @@ const User = ({ user, follow, unfollow }) => {
       ) : (
         <button
           onClick={() => {
-            axios
-              .post(
-                `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                {},
-                {
-                  withCredentials: true,
-                  headers: {
-                    "API-KEY": "be9a2f09-e73c-47b1-938e-5e4d5e8badb9",
-                  },
-                }
-              )
-              .then((response) => {
-                if (response.data.resultCode === 0) {
+            UsersAPI.followUser(user.id)
+              .then((data) => {
+                if (data.resultCode === 0) {
                   follow(user.id);
                 }
               });
