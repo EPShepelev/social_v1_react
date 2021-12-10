@@ -3,7 +3,7 @@ import style from "./Users.module.css";
 import User from "../User/User";
 
 
-const Users = ({users, follow, unfollow, pageSize, totalUsersCount, currentPage, onPageChanged}) => {
+const Users = ({ users, follow, unfollow, pageSize, totalUsersCount, currentPage, onPageChanged, isFollingProgress, toggleFollingProgress }) => {
   let pagesCount = Math.ceil(totalUsersCount/pageSize);
   const pages = [];
   for (let i = 1; i<=pagesCount; i++) {
@@ -18,7 +18,7 @@ return (
       })}
     </div>
     {users.map((user)=> (
-        <User key={user.id} user={user} follow={follow} unfollow={unfollow} />
+        <User key={user.id} user={user} follow={follow} unfollow={unfollow} isFollingProgress={isFollingProgress} toggleFollingProgress={toggleFollingProgress} />
     ))}
   </div>
 );

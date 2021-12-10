@@ -6,6 +6,7 @@ import {
   follow,
   unfollow,
   toggleIsFetching,
+  toggleFollingProgress,
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
@@ -19,6 +20,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    isFollingProgress: state.usersPage.isFollingProgress,
   };
 };
 
@@ -28,6 +30,8 @@ const UsersContainer = ({
   unfollow,
   isFetching,
   toggleIsFetching,
+  isFollingProgress,
+  toggleFollingProgress,
   setUsers,
   pageSize,
   totalUsersCount,
@@ -64,6 +68,8 @@ const UsersContainer = ({
         totalUsersCount={totalUsersCount}
         currentPage={currentPage}
         onPageChanged={onPageChanged}
+        isFollingProgress={isFollingProgress}
+        toggleFollingProgress={toggleFollingProgress}
       />
     </>
   );
@@ -76,4 +82,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
+  toggleFollingProgress,
 })(UsersContainer);
