@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { UsersAPI } from "../../api/api";
 import Users from "./Users";
 import { connect } from "react-redux";
 import {
   follow,
   unfollow,
-  toggleIsFetching,
+  acceptFollow,
+  acceptUnfollow,
   toggleFollingProgress,
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
+  getUsers,
 } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 
@@ -28,8 +29,9 @@ const UsersContainer = ({
   users,
   follow,
   unfollow,
+  acceptFollow,
+  acceptUnfollow,
   isFetching,
-  toggleIsFetching,
   isFollingProgress,
   toggleFollingProgress,
   setUsers,
@@ -38,23 +40,14 @@ const UsersContainer = ({
   currentPage,
   setCurrentPage,
   setTotalUsersCount,
+  getUsers,
 }) => {
-  const onPageChanged = (page) => {
-    setCurrentPage(page);
-    toggleIsFetching(true);
-    UsersAPI.getUsers(page, pageSize).then((data) => {
-      toggleIsFetching(false);
-      setUsers(data.items);
-    });
+  const onPageChanged = (page, pageSize) => {
+    getUsers(page, pageSize);
   };
 
   useEffect(() => {
-    toggleIsFetching(true);
-    UsersAPI.getUsers(currentPage, pageSize).then((data) => {
-      toggleIsFetching(false);
-      setUsers(data.items);
-      setTotalUsersCount(data.totalCount);
-    });
+    getUsers(currentPage, pageSize);
   }, [setUsers]);
 
   return (
@@ -64,6 +57,8 @@ const UsersContainer = ({
         users={users}
         follow={follow}
         unfollow={unfollow}
+        acceptFollow={acceptFollow}
+        acceptUnfollow={acceptUnfollow}
         pageSize={pageSize}
         totalUsersCount={totalUsersCount}
         currentPage={currentPage}
@@ -76,11 +71,13 @@ const UsersContainer = ({
 };
 
 export default connect(mapStateToProps, {
-  follow,
-  unfollow,
+  acceptFollow,
+  acceptUnfollow,
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
-  toggleIsFetching,
   toggleFollingProgress,
+  getUsers,
+  follow,
+  unfollow,
 })(UsersContainer);

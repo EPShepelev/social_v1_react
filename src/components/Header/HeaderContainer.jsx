@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { UsersAPI } from "../../api/api";
-import { setAuthUserData } from "../../redux/auth-reducer";
+import { getAuthUser } from "../../redux/auth-reducer";
 import Header from "./Header";
 
 const mapStateToProps = (state) => {
@@ -12,18 +11,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const HeaderContainer = ({ isAuth, login, email, setAuthUserData }) => {
+const HeaderContainer = ({ isAuth, login, email, getAuthUser }) => {
   useEffect(() => {
-    UsersAPI.getAuthUserData()
-    .then((data) => {
-      if (data.resultCode === 0) {
-        const { id, email, login } = data.data;
-        setAuthUserData(id, email, login);
-      }
-    });
+    getAuthUser();
   }, []);
 
   return <Header isAuth={isAuth} login={login} email={email} />;
 };
 
-export default connect(mapStateToProps, { setAuthUserData })(HeaderContainer);
+export default connect(mapStateToProps, { getAuthUser })(HeaderContainer);

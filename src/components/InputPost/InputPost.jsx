@@ -1,25 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./InputPost.module.css";
 
-const InputPost = ({ addPost, updateNewPostText, newPostText}) => {
+const InputPost = ({ addPost }) => {
+  const [post, setPost] = useState("");
 
-  const onAddPost = () => {
-    addPost();
-  };
-
-  const onInputChange = (e) => {
-    updateNewPostText(e.target.value);
+  const onAddPost = (post) => {
+    addPost(post);
+    setPost("");
   };
 
   return (
     <div className={style.postAdd__wrapper}>
       <div className={style.postAdd__text}>
         <textarea
-          onChange={onInputChange}
-          value={newPostText}
+          onChange={(e) => {
+            setPost(e.target.value);
+          }}
+          value={post}
         ></textarea>
       </div>
-      <button className={style.postAdd__btn} onClick={onAddPost}>
+      <button className={style.postAdd__btn} onClick={() => onAddPost(post)}>
         Add post!
       </button>
     </div>

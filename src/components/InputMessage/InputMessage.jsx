@@ -7,31 +7,26 @@ const InputMessage = ({ addMessage }) => {
   const [inputClassList, setInputClassList] = useState([]);
 
   const onAddMessage = (text) => {
-    if (messageLength === 7) {
-     text+= "!!!";
-    }
     addMessage(text);
     setMessage("");
   };
 
   useEffect(() => {
-      setMessageLength(message.length);
-      if (messageLength < 5) {
-        setInputClassList(style.font)
-      }
-      else if (messageLength > 10) {
-        setInputClassList(style.color)
-      }
-      else {
-        setInputClassList([])
-      }
+    setMessageLength(message.length);
+    if (messageLength < 5) {
+      setInputClassList(style.font);
+    } else if (messageLength > 10) {
+      setInputClassList(style.color);
+    } else {
+      setInputClassList([]);
+    }
   }, [message]);
 
   return (
     <div className={style.postAdd__wrapper}>
       <div className={style.postAdd__text}>
         <textarea
-        className={inputClassList}
+          className={inputClassList}
           onChange={(e) => {
             setMessage(e.target.value);
           }}
