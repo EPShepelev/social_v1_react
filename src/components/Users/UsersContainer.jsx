@@ -13,6 +13,8 @@ import {
   getUsers,
 } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
+import { withAuthRedirect } from "../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 const mapStateToProps = (state) => {
   return {
@@ -70,14 +72,31 @@ const UsersContainer = ({
   );
 };
 
-export default connect(mapStateToProps, {
-  acceptFollow,
-  acceptUnfollow,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  toggleFollingProgress,
-  getUsers,
-  follow,
-  unfollow,
-})(UsersContainer);
+// const AuthRedirectComponent = withAuthRedirect(UsersContainer);
+
+// export default connect(mapStateToProps, {
+//   acceptFollow,
+//   acceptUnfollow,
+//   setUsers,
+//   setCurrentPage,
+//   setTotalUsersCount,
+//   toggleFollingProgress,
+//   getUsers,
+//   follow,
+//   unfollow,
+// })(AuthRedirectComponent);
+
+export default compose(
+  connect(mapStateToProps, {
+    acceptFollow,
+    acceptUnfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleFollingProgress,
+    getUsers,
+    follow,
+    unfollow,
+  }),
+  withAuthRedirect
+)(UsersContainer);

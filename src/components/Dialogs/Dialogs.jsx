@@ -4,17 +4,18 @@ import Message from "../Message/Message";
 import style from "./Dialogs.module.css";
 import InputMessageContainer from "../InputMessage/InputMessageContainer";
 import { connect } from "react-redux";
-
+import { withAuthRedirect } from "../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 const mapStateToProps = (state) => {
   return {
     dialogsData: state.dialogs.dialogsData,
-    messagesData: state.dialogs.messagesData
-  }
-}
+    messagesData: state.dialogs.messagesData,
+    isAuth: state.auth.isAuth,
+  };
+};
 
 const Dialogs = ({ dialogsData, messagesData }) => {
-
   return (
     <div className={style.wrapper}>
       <div className={style.dialogs}>
@@ -25,7 +26,11 @@ const Dialogs = ({ dialogsData, messagesData }) => {
         </div>
         <div className={style.messages}>
           {messagesData.map((message) => (
-            <Message key={message.id} isYours={message.isYours} text={message.text} />
+            <Message
+              key={message.id}
+              isYours={message.isYours}
+              text={message.text}
+            />
           ))}
         </div>
       </div>
@@ -34,4 +39,4 @@ const Dialogs = ({ dialogsData, messagesData }) => {
   );
 };
 
-export default connect (mapStateToProps) (Dialogs);
+export default compose(connect(mapStateToProps), withAuthRedirect)(Dialogs);

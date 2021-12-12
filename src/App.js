@@ -10,8 +10,9 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 import UsersContainer from "./components/Users/UsersContainer";
+import Login from "./components/Login/Login";
 
-const App = ({state}) => (
+const App = ({ state }) => (
   <BrowserRouter>
     <div className="container">
       <HeaderContainer />
@@ -21,13 +22,14 @@ const App = ({state}) => (
           <Route path="/profile" element={<ProfileContainer />}>
             <Route path=":id" element={<ProfileContainer />} />
           </Route>
-          <Route path="/dialogs" element={ <Dialogs/>}>
+          <Route path="/dialogs" element={<Dialogs />}>
             <Route path=":id" element={<Dialogs />} />
           </Route>
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/users" element={<UsersContainer />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
       <Footer />
