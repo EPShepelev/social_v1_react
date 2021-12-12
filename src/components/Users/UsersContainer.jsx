@@ -72,20 +72,6 @@ const UsersContainer = ({
   );
 };
 
-// const AuthRedirectComponent = withAuthRedirect(UsersContainer);
-
-// export default connect(mapStateToProps, {
-//   acceptFollow,
-//   acceptUnfollow,
-//   setUsers,
-//   setCurrentPage,
-//   setTotalUsersCount,
-//   toggleFollingProgress,
-//   getUsers,
-//   follow,
-//   unfollow,
-// })(AuthRedirectComponent);
-
 export default compose(
   connect(mapStateToProps, {
     acceptFollow,
