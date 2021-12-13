@@ -36,21 +36,20 @@ const UsersContainer = ({
   isFetching,
   isFollingProgress,
   toggleFollingProgress,
-  setUsers,
   pageSize,
   totalUsersCount,
   currentPage,
-  setCurrentPage,
-  setTotalUsersCount,
   getUsers,
+  setCurrentPage,
 }) => {
   const onPageChanged = (page, pageSize) => {
     getUsers(page, pageSize);
+    setCurrentPage(page);
   };
 
   useEffect(() => {
     getUsers(currentPage, pageSize);
-  }, [setUsers]);
+  }, []);
 
   return (
     <>
