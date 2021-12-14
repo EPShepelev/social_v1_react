@@ -4,14 +4,14 @@ import Avatar from "../Avatar/Avatar";
 import Preloader from "../common/Preloader/Preloader";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
-const ProfileInfo = ({profile}) => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
   if (!profile) {
     return  <Preloader />
   }
   return ( <div className={style.profileInfo}>
     <div className={style.profileInfo__avatar}>
       <Avatar avatar={profile.photos.large}/>
-      <ProfileStatus />
+      <ProfileStatus status={status} updateStatus={updateStatus}/>
     </div>
     <div>
       <div>{profile.fullName}</div>

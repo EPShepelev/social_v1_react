@@ -24,10 +24,22 @@ export const UsersAPI = {
       .delete(`follow/${id}`)
       .then((response) => response.data);
   },
+  getUserProfile(id) {
+    console.warn("Obsolete method. Plase use profile api")
+    return profileAPI.getUserProfile(id);
+  },
+};
 
+export const profileAPI = {
   getUserProfile(id) {
     return axiosInstaice.get(`profile/${id}`).then((response) => response.data);
   },
+  getUserStatus(id) {
+    return axiosInstaice.get(`profile/status/${id}`).then((response) => response.data);
+  },
+  updateUserStatus(status) {
+    return axiosInstaice.put(`profile/status`, {status: status}).then((response) => response.data);
+  }
 };
 
 export const AuthAPI = {

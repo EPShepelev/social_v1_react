@@ -1,31 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./ProfileStatus.module.css";
 
-const ProfileStatus = () => {
-
+const ProfileStatus = ({ status, updateStatus }) => {
   const [editMode, setEditMod] = useState(false);
-  const [status, setStatus] = useState("dClick and type status...");
+  const [localStatus, setLocalStatus] = useState(status);
 
   const activateEditMode = () => {
     setEditMod(true);
-  }
+  };
 
   const deActivateEditMode = (e) => {
-    setStatus(e.target.value);
     setEditMod(false);
-  }
+    updateStatus(localStatus);
+  };
 
-  const onFocusHandle = (e) => e.target.select()
+  useEffect(() => {
+    setLocalStatus(status)
+  }, [status]);
+
+  const onFocusHandle = (e) => e.target.select();
 
   return (
     <div className={style.container}>
       {editMode ? (
         <div>
-          <input autoFocus={true} className={style.input} onFocus={onFocusHandle} onBlur={(e) => deActivateEditMode(e)} ></input>
+          <input
+            autoFocus={true}
+            className={style.input}
+            onChange={(e) => {
+              setLocalStatus(e.target.value);
+            }}
+            onFocus={onFocusHandle}
+            onBlur={(e) => deActivateEditMode(e)}
+            value={localStatus}
+          />
         </div>
       ) : (
         <div>
-          <span className={style.text} onDoubleClick={activateEditMode}>{status}</span>
+          <span className={style.text} onClick={activateEditMode}>
+            {status || "Click andy type status..." }
+          </span>
         </div>
       )}
     </div>
