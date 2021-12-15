@@ -52,7 +52,7 @@ const profileReducer = (state = initialState, action) => {
         postsData: [...state.postsData, {
           id: 7,
           likes: 0,
-          post: post
+          text: post
         }],
       };
     case SET_USER_PROFILE:
