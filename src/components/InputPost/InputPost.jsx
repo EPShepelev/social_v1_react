@@ -1,27 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./InputPost.module.css";
+import TextInputBase from "../common/TextInput/TextInputBase";
 
 const InputPost = ({ addPost }) => {
-  const [post, setPost] = useState("");
 
-  const onAddPost = (post) => {
-    addPost(post);
-    setPost("");
+  const addNewPost = (values) => {
+    addPost(values.newPostBody);
   };
 
   return (
     <div className={style.postAdd__wrapper}>
-      <div className={style.postAdd__text}>
-        <textarea
-          onChange={(e) => {
-            setPost(e.target.value);
-          }}
-          value={post}
-        ></textarea>
-      </div>
-      <button className={style.postAdd__btn} onClick={() => onAddPost(post)}>
-        Add post!
-      </button>
+       <TextInputBase onSubmitClick={addNewPost} name={"newPostBody"} btntext={"Create Post"} placeholder={"type..."}/>
     </div>
   );
 };

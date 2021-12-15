@@ -46,4 +46,7 @@ export const AuthAPI = {
   getAuthUserData() {
     return axiosInstaice.get(`auth/me`).then((response) => response.data);
   },
+  loginUser(email, password, rememberMe) {
+    return axiosInstaice.post(`auth/login`, {email, password, rememberMe}).then((response) => response.data);
+  },
 };

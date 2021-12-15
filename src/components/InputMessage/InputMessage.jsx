@@ -1,44 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import TextInputBase from "../common/TextInput/TextInputBase";
 import style from "./InputMessage.module.css";
 
 const InputMessage = ({ addMessage }) => {
-  const [message, setMessage] = useState("");
-  const [messageLength, setMessageLength] = useState(0);
-  const [inputClassList, setInputClassList] = useState([]);
 
-  const onAddMessage = (text) => {
-    addMessage(text);
-    setMessage("");
+  const addNewMessage = (values) => {
+    addMessage(values.newMessageBody);
   };
-
-  useEffect(() => {
-    setMessageLength(message.length);
-    if (messageLength < 5) {
-      setInputClassList(style.font);
-    } else if (messageLength > 10) {
-      setInputClassList(style.color);
-    } else {
-      setInputClassList([]);
-    }
-  }, [message]);
 
   return (
     <div className={style.postAdd__wrapper}>
-      <div className={style.postAdd__text}>
-        <textarea
-          className={inputClassList}
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-          value={message}
-        ></textarea>
-      </div>
-      <button
-        className={style.postAdd__btn}
-        onClick={() => onAddMessage(message)}
-      >
-        Send message
-      </button>
+      <TextInputBase onSubmitClick={addNewMessage} name={"newMessageBody"} btntext={"Add message"} placeholder={"type..."}/>
     </div>
   );
 };
