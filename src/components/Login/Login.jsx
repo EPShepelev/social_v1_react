@@ -1,5 +1,5 @@
 import React from "react";
-import FormBase from "../common/Form/Form";
+import LoginFormBase from "../common/Form/LoginFormBase";
 
 const Login = () => {
   const btntext = "Log In";
@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div>
       <h1>Log In</h1>
-      <FormBase btntext={btntext}/>
+      <LoginFormBase btntext={btntext}/>
     </div>
   );
 };

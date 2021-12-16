@@ -5,12 +5,12 @@ import style from "./InputMessage.module.css";
 const InputMessage = ({ addMessage }) => {
 
   const addNewMessage = (values) => {
-    addMessage(values.newMessageBody);
+    addMessage(values.message);
   };
 
   return (
     <div className={style.postAdd__wrapper}>
-      <TextInputBase onSubmitClick={addNewMessage} name={"newMessageBody"} btntext={"Add message"} placeholder={"type..."}/>
+      <TextInputBase onSubmitClick={addNewMessage} btntext={"Add message"} placeholder={"type..."}/>
     </div>
   );
 };

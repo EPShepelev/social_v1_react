@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 
-const FormBase = ({btntext}) => (
+const LoginFormBase = ({btntext}) => (
   <>
     <Formik
       initialValues={{
@@ -20,4 +20,4 @@ const FormBase = ({btntext}) => (
   </>
 );
 
-export default FormBase
+export default LoginFormBase
