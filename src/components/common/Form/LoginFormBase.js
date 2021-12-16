@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 
-const LoginFormBase = ({btntext}) => (
+const LoginFormBase = ({btntext, login}) => (
   <>
     <Formik
       initialValues={{
@@ -9,10 +9,15 @@ const LoginFormBase = ({btntext}) => (
         password: '',
         rememberMe: false,
       }}
+      onSubmit={(values, { setSubmitting, resetForm }) => {
+        login(values.email, values.password, values.rememberMe);
+        setSubmitting(false);
+        resetForm();
+    }}
     >
       <Form>
-        <Field id="email" name="email" placeholder="E-mail" />
-        <Field id="password" name="password" placeholder="Password"/>
+        <Field  name="email" placeholder="E-mail" />
+        <Field type="password"  name="password" placeholder="Password"/>
         <Field type="checkbox" name="rememberMe" /> Remember me
         <button type="submit">{btntext}</button>
       </Form>
