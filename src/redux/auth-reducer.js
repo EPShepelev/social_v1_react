@@ -33,10 +33,11 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
 
 export const getAuthUser = () => {
   return (dispatch) => {
-    AuthAPI.getAuthUserData().then((data) => {
+    return AuthAPI.getAuthUserData().then((data) => {
       if (data.resultCode === 0) {
-        const { userId, email, login } = data.data;
-        dispatch(setAuthUserData(userId, email, login, true));
+        const { id, email, login } = data.data;
+        console.log(data);
+        dispatch(setAuthUserData(id, email, login, true));
       }
     });
   };

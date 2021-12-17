@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PostItem from "../PostItem/PostItem";
 import InputPostContainer from "../InputPost/InputPostContainer";
 import style from "./Posts.module.css";

@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
@@ -11,9 +11,21 @@ import Settings from "./components/Settings/Settings";
 import Footer from "./components/Footer/Footer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
+import { initializeApp } from "./redux/app-reducer";
+import { connect } from "react-redux";
+import Preloader from "./components/common/Preloader/Preloader";
 
-const App = ({ state }) => (
-  <BrowserRouter>
+const App = ({ initialized , initializeApp}) => {
+
+  useEffect(() => {
+    initializeApp()
+  });
+
+  if (!initialized) {
+    return <Preloader/ >
+  }
+
+  return (
     <div className="container">
       <HeaderContainer />
       <Navbar />
@@ -34,7 +46,10 @@ const App = ({ state }) => (
       </div>
       <Footer />
     </div>
-  </BrowserRouter>
-);
+  )};
 
-export default App;
+  const mapStateToProps =(state) =>({
+    initialized: state.app.initialized,
+  })
+
+export default connect(mapStateToProps, {initializeApp})(App);
