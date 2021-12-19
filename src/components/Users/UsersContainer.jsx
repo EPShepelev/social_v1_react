@@ -15,15 +15,23 @@ import {
 import Preloader from "../common/Preloader/Preloader";
 import { withAuthRedirect } from "../hoc/withAuthRedirect";
 import { compose } from "redux";
+import {
+  getUsersFormProps,
+  getPageSize,
+  getTotalUsersCount,
+  getCurrentPage,
+  getIsFetching,
+  getIsFollingProgress,
+} from "../../redux/users-selectors";
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    isFollingProgress: state.usersPage.isFollingProgress,
+    users: getUsersFormProps(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    isFollingProgress: getIsFollingProgress(state),
   };
 };
 
