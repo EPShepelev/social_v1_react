@@ -3,10 +3,10 @@ import {
   profileAPI
 } from "../api/api";
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_USER_STATUS = "SET_USER_STATUS";
-const DELETE_POST = "DELETE_POST";
+const ADD_POST = "social-network/profile/ADD-POST";
+const SET_USER_PROFILE = "social-network/profile/SET_USER_PROFILE";
+const SET_USER_STATUS = "social-network/profile/SET_USER_STATUS";
+const DELETE_POST = "social-network/profile/DELETE_POST";
 
 const initialState = {
   postsData: [{
