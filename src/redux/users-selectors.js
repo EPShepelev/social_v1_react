@@ -1,4 +1,4 @@
-export const getUsersFormProps = (state) => {
+export const getUsersFromProps = (state) => {
   return state.usersPage.users;
 };
 

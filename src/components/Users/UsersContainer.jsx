@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import {
   follow,
   unfollow,
-  acceptFollow,
-  acceptUnfollow,
   toggleFollingProgress,
   setUsers,
   setCurrentPage,
@@ -16,7 +14,7 @@ import Preloader from "../common/Preloader/Preloader";
 import { withAuthRedirect } from "../hoc/withAuthRedirect";
 import { compose } from "redux";
 import {
-  getUsersFormProps,
+  getUsersFromProps,
   getPageSize,
   getTotalUsersCount,
   getCurrentPage,
@@ -26,7 +24,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    users: getUsersFormProps(state),
+    users: getUsersFromProps(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),
@@ -39,8 +37,6 @@ const UsersContainer = ({
   users,
   follow,
   unfollow,
-  acceptFollow,
-  acceptUnfollow,
   isFetching,
   isFollingProgress,
   toggleFollingProgress,
@@ -66,8 +62,6 @@ const UsersContainer = ({
         users={users}
         follow={follow}
         unfollow={unfollow}
-        acceptFollow={acceptFollow}
-        acceptUnfollow={acceptUnfollow}
         pageSize={pageSize}
         totalUsersCount={totalUsersCount}
         currentPage={currentPage}
@@ -81,8 +75,6 @@ const UsersContainer = ({
 
 export default compose(
   connect(mapStateToProps, {
-    acceptFollow,
-    acceptUnfollow,
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
