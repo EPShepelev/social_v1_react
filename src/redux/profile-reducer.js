@@ -6,6 +6,7 @@ import {
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
+const DELETE_POST = "DELETE_POST";
 
 const initialState = {
   postsData: [{
@@ -63,6 +64,10 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state, status: action.status
       };
+      case DELETE_POST:
+      return {
+        ...state, postsData: state.postsData.filter(item => item.id !== action.postId)
+      }
     default:
       return state;
   }
@@ -71,6 +76,10 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = (post) => ({
   type: ADD_POST,
   post: post,
+});
+export const deletePostActionCreator = (postId) => ({
+  type: DELETE_POST,
+  postId: postId,
 });
 export const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,
