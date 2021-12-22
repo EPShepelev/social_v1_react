@@ -1,4 +1,6 @@
-import { getAuthUser } from "./auth-reducer"
+import {
+  getAuthUser
+} from "./auth-reducer"
 
 const INITIALIZED_SUCCESS = "social-network/app/INITIALIZED_SUCCESS";
 
@@ -22,10 +24,9 @@ export const initnalizedSuccess = () => ({
   type: INITIALIZED_SUCCESS,
 });
 
-export const initializeApp = () => (dispatch) => {
-  dispatch(getAuthUser()).then(()=>{dispatch(initnalizedSuccess())})
+export const initializeApp = () => async (dispatch) => {
+  await dispatch(getAuthUser());
+    dispatch(initnalizedSuccess());
 }
-
-
 
 export default appReducer;

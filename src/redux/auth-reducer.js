@@ -32,34 +32,31 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
 });
 
 export const getAuthUser = () => {
-  return (dispatch) => {
-    return AuthAPI.getAuthUserData().then((data) => {
+  return async (dispatch) => {
+    const data = await AuthAPI.getAuthUserData();
       if (data.resultCode === 0) {
         const { id, email, login } = data.data;
         console.log(data);
         dispatch(setAuthUserData(id, email, login, true));
       }
-    });
   };
 };
 
 export const login = (email, password, rememberMe) => {
-  return (dispatch) => {
-    AuthAPI.login(email, password, rememberMe).then((data) => {
+  return async (dispatch) => {
+    const data = await AuthAPI.login(email, password, rememberMe);
       if (data.resultCode === 0) {
        dispatch(getAuthUser());
       }
-    });
   };
 };
 
 export const logout = () => {
-  return (dispatch) => {
-    AuthAPI.logout().then((data) => {
+  return async (dispatch) => {
+    const data = await AuthAPI.logout();
       if (data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false));
       }
-    });
   };
 };
 

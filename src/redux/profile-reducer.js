@@ -91,28 +91,25 @@ export const setStatus = (status) => ({
 });
 
 export const getProfile = (userId) => {
-  return (dispatch) => {
-    UsersAPI.getUserProfile(userId).then((data) => {
+  return async (dispatch) => {
+    const data = await UsersAPI.getUserProfile(userId);
       dispatch(setUserProfile(data));
-    });
   };
 };
 
 export const getStatus = (userId) => {
-  return (dispatch) => {
-    profileAPI.getUserStatus(userId).then((data) => {
+  return async (dispatch) => {
+    const data = await profileAPI.getUserStatus(userId);
       dispatch(setStatus(data));
-    });
   };
 };
 
 export const updateStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateUserStatus(status).then((data) => {
+  return async (dispatch) => {
+    const data = await profileAPI.updateUserStatus(status);
       if (data.resultCode === 0) {
         dispatch(setStatus(status));
       }
-    });
   };
 };
 

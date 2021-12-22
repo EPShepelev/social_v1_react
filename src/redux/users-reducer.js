@@ -90,37 +90,34 @@ export const toggleFollingProgress = (isFetching, userId) => ({
 });
 
 export const getUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    UsersAPI.getUsers(currentPage, pageSize).then((data) => {
+    const data = await UsersAPI.getUsers(currentPage, pageSize);
       dispatch(toggleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
-    });
   };
 };
 
 export const follow = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleFollingProgress(true, userId));
-    UsersAPI.followUser(userId).then((data) => {
+    const data = await UsersAPI.followUser(userId);
       if (data.resultCode === 0) {
         dispatch(acceptFollow(userId));
       }
       dispatch(toggleFollingProgress(false, userId));
-    });
   };
 };
 
 export const unfollow = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleFollingProgress(true, userId));
-    UsersAPI.unfollowUser(userId).then((data) => {
+    const data = await UsersAPI.unfollowUser(userId);
       if (data.resultCode === 0) {
         dispatch(acceptUnfollow(userId));
       }
       dispatch(toggleFollingProgress(false, userId));
-    });
   };
 };
 
