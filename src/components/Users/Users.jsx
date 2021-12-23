@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Users.module.css";
 import User from "../User/User";
-import Paginations from "../Pagination/Pagination";
+import Paginations from "../common/Pagination/Pagination";
 
 const Users = ({
   follow,

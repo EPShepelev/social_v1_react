@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Pagination.module.css";
-import toLeft from "../../assets/img/back.png";
-import toRight from "../../assets/img/next.png";
+import toLeft from "../../../assets/img/back.png";
+import toRight from "../../../assets/img/next.png";
 
 const Paginations = ({
   pageSize,
