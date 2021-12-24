@@ -31,7 +31,7 @@ const App = ({ initialized , initializeApp}) => {
     <div className="container">
       <HeaderContainer />
       <Navbar />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Preloader />}>
       <div className="content-wrapper">
         <Routes>
       <Route path="/profile" element={<ProfileContainer />}>
