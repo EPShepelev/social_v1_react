@@ -22,7 +22,7 @@ const Users = ({
 
     return (
       <>
-        < Paginations pageSize={pageSize} totalUsersCount={totalUsersCount} currentPage={currentPage} onPageChanged={onPageChanged} />
+        < Paginations pageSize={pageSize} totalItemsCount={totalUsersCount} currentPage={currentPage} onPageChanged={onPageChanged} />
         {users.map((user) => (
           <User
             key={user.id}

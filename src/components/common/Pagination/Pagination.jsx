@@ -1,77 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Pagination.module.css";
 import toLeft from "../../../assets/img/back.png";
 import toRight from "../../../assets/img/next.png";
 
 const Paginations = ({
+  totalItemsCount,
   pageSize,
-  totalUsersCount,
   currentPage,
   onPageChanged,
+  portionSize = 5,
 }) => {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  const pagesCount = Math.ceil(totalItemsCount / pageSize);
   const pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
 
-  if (pages.length > 5) {
-    return (
-        <div className={style.paginationList}>
-          <span
-            onClick={(e) => {
-              if (currentPage === 1) return null;
-              onPageChanged(currentPage - 1);
-            }}
-          >
-            <img
-              className={style.arrows}
-              src={toLeft}
-              alt="list users to left"
-            />
-          </span>
-          <span
-            onClick={(e) => {
-              onPageChanged(currentPage);
-            }}
-            className={style.active}
-          >
-            {currentPage}
-          </span>
-          <span
-            onClick={(e) => {
-              if (currentPage === pages.length - 1) return null;
-              onPageChanged(currentPage + 1);
-            }}
-          >
-            <img
-              className={style.arrows}
-              src={toRight}
-              alt="list users to right"
-            />
-          </span>
-        </div>
+  const portionCount = Math.ceil(pagesCount / portionSize);
+  const [portionNumber, setPortionNumber] = useState(1);
+  const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+  const rightPortionPageNumber = portionNumber * portionSize;
 
-    );
-  } else {
-    return (
-        <div className={style.paginationList}>
-          {pages.map((page) => {
-            return (
-              <span
-                key={page}
-                className={currentPage === page ? style.active : ""}
-                onClick={(e) => {
-                  onPageChanged(page);
-                }}
-              >
-                {page}
-              </span>
-            );
-          })}
-        </div>
-    );
-  }
+  return (
+    <div className={style.paginationList}>
+      {portionNumber > 1 && (
+        <button
+          onClick={() => {
+            setPortionNumber(portionNumber - 1);
+          }}
+        >
+          <img className={style.arrows} src={toLeft} alt="list users to left" />
+        </button>
+      )}
+      {pages
+        .filter(
+          (page) =>
+            page >= leftPortionPageNumber && page <= rightPortionPageNumber
+        )
+        .map((page) => {
+          return (
+            <span
+              key={page}
+              className={currentPage === page ? style.active : ""}
+              onClick={(e) => {
+                onPageChanged(page);
+              }}
+            >
+              {page}
+            </span>
+          );
+        })}
+      {portionCount > portionNumber && (
+        <button
+          onClick={() => {
+            setPortionNumber(portionNumber + 1);
+          }}
+        >
+          <img
+            className={style.arrows}
+            src={toRight}
+            alt="list users to left"
+          />
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default Paginations;
