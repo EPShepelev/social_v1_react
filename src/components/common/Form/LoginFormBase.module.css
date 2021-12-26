@@ -1,0 +1,27 @@
+.form {
+  width: 100%;
+}
+
+.inputField {
+  display: block;
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 17px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.formBtn {
+  display: block;
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+}
+
+.formBtn:hover,
+.formBtn:active {
+  background-color: #dc4734;
+}

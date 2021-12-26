@@ -9,11 +9,18 @@
   align-items: center;
   text-align: center;
 }
+
 .paginationList span {
   margin: 0 5px;
   cursor: pointer;
-
 }
+
+.paginationList button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .arrows {
   width: 30px;
   height: auto;

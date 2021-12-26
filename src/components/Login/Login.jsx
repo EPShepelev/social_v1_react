@@ -3,6 +3,7 @@ import LoginFormBase from "../common/Form/LoginFormBase";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
+import style from "./Login.module.css";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,17 +11,19 @@ const mapStateToProps = (state) => {
   };
 };
 
-const Login = ({login, isAuth}) => {
+const Login = ({ login, isAuth }) => {
   const btntext = "Log In";
-if ( isAuth ) {
-  return <Navigate to={"/profile"} />
-}
+  if (isAuth) {
+    return <Navigate to={"/profile"} />;
+  }
   return (
-    <div>
-      <h1>Log In</h1>
-      <LoginFormBase btntext={btntext} login={login} />
+    <div className={style.wrapper}>
+      <div className={style.inner}>
+        <h1 className={style.title}>Please login</h1>
+        <LoginFormBase btntext={btntext} login={login} />
+      </div>
     </div>
   );
 };
 
-export default connect(mapStateToProps, {login}) (Login);
+export default connect(mapStateToProps, { login })(Login);

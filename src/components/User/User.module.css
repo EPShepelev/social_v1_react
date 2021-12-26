@@ -1,0 +1,9 @@
+.item {
+  border: 1px solid #ccc;
+  margin: 5px 20px;
+  padding: 5px;
+}
+
+.item:hover {
+  border: 1px solid #e36a5b;
+}

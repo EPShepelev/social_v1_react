@@ -16,6 +16,12 @@
   text-decoration: none;
 }
 
+.item img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
 .activeLink:hover,
 .activeLink:active {
   color: #dc4734;
@@ -26,4 +32,3 @@
   font-weight: 700;
   margin-top: 40px;
 }
-

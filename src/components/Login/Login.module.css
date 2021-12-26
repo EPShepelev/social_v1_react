@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: rgba(211, 211, 211, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 350px;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  top: 30%;
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+}

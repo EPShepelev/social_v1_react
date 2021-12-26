@@ -1,32 +1,33 @@
 const initialState = {
-  friendsList: [{
+  friendsList: [
+    {
       id: 1,
-      name: "Платон"
+      name: "Платон",
     },
     {
       id: 2,
-      name: "Аристотель"
+      name: "Аристотель",
     },
     {
       id: 3,
-      name: "Плутарх"
+      name: "Плутарх",
     },
     {
       id: 4,
-      name: "Диоген"
+      name: "Диоген",
     },
     {
       id: 5,
-      name: "How's your greed?"
+      name: "How's your grid?",
     },
   ],
-}
+};
 
 const friendsReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
-}
+};
 
-export default friendsReducer
+export default friendsReducer;

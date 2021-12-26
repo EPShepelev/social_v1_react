@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
+import style from "./User.module.css";
 
 const User = ({ user, follow, unfollow, isFollingProgress }) => {
   return (
-    <div>
+    <div className={style.item}>
       <Link to={`/profile/${user.id}`}>
         <Avatar avatar={user.photos.small} />
       </Link>
