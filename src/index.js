@@ -10,7 +10,7 @@ import { BrowserRouter } from "react-router-dom";
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <App />
         </BrowserRouter>
       </Provider>
@@ -18,8 +18,6 @@ import { BrowserRouter } from "react-router-dom";
     document.getElementById("root")
   );
 
-
-window.store = store;
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

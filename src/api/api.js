@@ -39,6 +39,13 @@ export const profileAPI = {
   },
   updateUserStatus(status) {
     return axiosInstaice.put(`profile/status`, {status: status}).then((response) => response.data);
+  },
+  savePhoto(photoFile) {
+    const formData = new FormData();
+    formData.append("image", photoFile);
+    return axiosInstaice.put(`profile/photo`, formData, {headers: {
+      "Content-Type": "multipart/form-data"
+    }}).then((response) => response.data);
   }
 };
 
