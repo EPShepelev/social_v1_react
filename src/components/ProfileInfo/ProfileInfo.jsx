@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./ProfileInfo.module.css";
 import Avatar from "../Avatar/Avatar";
 import Preloader from "../common/Preloader/Preloader";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import ProfileData from "../ProfileData/ProfileData";
+import ProfileEditForm from "../ProfileEditForm/ProfileEditForm";
 
-const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfileData }) => {
+  const [editMode, setEditMod] = useState(false);
+
   if (!profile) {
     return  <Preloader />
   }
+
+  const activateEditMode = () => {
+    if (isOwner) {
+    setEditMod(true);
+    }
+  };
 
   const onPhotoSelected = (e) => {
       if( e.target.files.length) {
@@ -15,18 +25,16 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto }) => {
       }
   }
 
-  return ( <div className={style.profileInfo}>
-    <div className={style.profileInfo__avatar}>
-      <Avatar avatar={profile.photos.large}/>
-      <ProfileStatus status={status} updateStatus={updateStatus}/>
+  return (
+    <div className={style.profileInfo}>
+      <div className={style.profileInfo__avatar}>
+        <Avatar avatar={profile.photos.large}/>
+        {isOwner && <input type="file" onChange={onPhotoSelected}/>}
+        <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner} />
+      </div>
+      {editMode ? <ProfileEditForm profile={profile} isOwner={isOwner} saveProfileData={saveProfileData} /> : <ProfileData profile ={profile} isOwner={isOwner} activateEditMode={activateEditMode} />}
     </div>
-    <div>
-      <div>{profile.fullName}</div>
-      <div>{profile.aboutMe}</div>
-      <div>{profile.contacts.facebook}</div>
-      {isOwner && <input type="file" onChange={onPhotoSelected}/>}
-    </div>
-  </div>)
+    )
   };
 
 export default ProfileInfo;

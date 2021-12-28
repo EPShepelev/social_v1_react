@@ -5,7 +5,7 @@ import TextInputBase from "../common/TextInput/TextInputBase";
 const InputPost = ({ addPost }) => {
 
   const addNewPost = (values) => {
-    addPost(values.newPostBody);
+    addPost(values.message);
   };
 
   return (

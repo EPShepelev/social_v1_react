@@ -7,7 +7,7 @@ const messageMaxLength = 300;
     } else if (
       values.message.length > messageMaxLength
     ) {
-      errors.message = `Max message siaze is about ${messageMaxLength} symbols`;
+      errors.message = `Max message size is about ${messageMaxLength} symbols`;
     }
     return errors;
   };

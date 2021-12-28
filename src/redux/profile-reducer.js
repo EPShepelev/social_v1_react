@@ -131,4 +131,8 @@ export const savePhoto = (file) => {
   };
 };
 
+export const saveProfileData = () => {
+  return alert("Yeah!")
+}
+
 export default profileReducer;

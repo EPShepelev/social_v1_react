@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import style from "./ProfileStatus.module.css";
 
-const ProfileStatus = ({ status, updateStatus }) => {
+const ProfileStatus = ({ status, updateStatus, isOwner }) => {
   const [editMode, setEditMod] = useState(false);
   const [localStatus, setLocalStatus] = useState(status);
 
   const activateEditMode = () => {
+    if (isOwner) {
     setEditMod(true);
+    }
   };
 
   const deActivateEditMode = (e) => {
@@ -38,7 +40,7 @@ const ProfileStatus = ({ status, updateStatus }) => {
       ) : (
         <div>
           <span className={style.text} onClick={activateEditMode}>
-            {status || "Click andy type status..." }
+            {status || (isOwner && "Click andy type status..." ) }
           </span>
         </div>
       )}

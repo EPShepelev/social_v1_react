@@ -1,5 +1,6 @@
 .profileInfo {
   border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 5px;
   margin: 15px;
   display: flex;
   flex-direction: row;
@@ -12,3 +13,4 @@
   border-radius: 10%;
   margin-right: 30px;
 }
+

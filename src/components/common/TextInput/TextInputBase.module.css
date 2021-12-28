@@ -35,3 +35,8 @@
 .btn:hover {
   color: #333;
 }
+
+.btn:disabled {
+  color: #000;
+  background-color: #ccc;
+}
