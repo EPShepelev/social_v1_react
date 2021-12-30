@@ -30,7 +30,7 @@ const ProfileContainer = ({ profile, status, getProfile, getStatus, updateStatus
     getStatus(id);
   }, [id]);
 
-  return <Profile profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} savePhoto={savePhoto} saveProfileData={saveProfileData} />;
+  return <Profile profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} savePhoto={savePhoto} saveProfileData={saveProfileData}/>;
 };
 
 export default compose(

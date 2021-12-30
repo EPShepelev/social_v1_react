@@ -46,6 +46,9 @@ export const profileAPI = {
     return axiosInstaice.put(`profile/photo`, formData, {headers: {
       "Content-Type": "multipart/form-data"
     }}).then((response) => response.data);
+  },
+  saveProfile(profile) {
+    return axiosInstaice.put(`profile`, profile);
   }
 };
 

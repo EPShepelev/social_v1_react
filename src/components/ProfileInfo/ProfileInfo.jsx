@@ -19,11 +19,17 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, savePr
     }
   };
 
+  const onEditProfileSubmit = (formData) => {
+    saveProfileData(formData);
+    setEditMod(false);
+  }
+
   const onPhotoSelected = (e) => {
       if( e.target.files.length) {
         savePhoto(e.target.files[0]);
       }
   }
+
 
   return (
     <div className={style.profileInfo}>
@@ -32,7 +38,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, savePr
         {isOwner && <input type="file" onChange={onPhotoSelected}/>}
         <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner} />
       </div>
-      {editMode ? <ProfileEditForm profile={profile} isOwner={isOwner} saveProfileData={saveProfileData} /> : <ProfileData profile ={profile} isOwner={isOwner} activateEditMode={activateEditMode} />}
+      {editMode ? <ProfileEditForm profile={profile} onEditProfileSubmit={onEditProfileSubmit} /> : <ProfileData profile={profile} isOwner={isOwner} activateEditMode={activateEditMode} />}
     </div>
     )
   };
