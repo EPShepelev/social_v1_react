@@ -1,7 +1,4 @@
-import {
-  UsersAPI,
-  profileAPI
-} from "../api/api";
+import { UsersAPI, profileAPI } from "../api/api";
 
 const ADD_POST = "social-network/profile/ADD-POST";
 const SET_USER_PROFILE = "social-network/profile/SET_USER_PROFILE";
@@ -10,7 +7,8 @@ const DELETE_POST = "social-network/profile/DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "social-network/profile/SAVE_PHOTO_SUCCESS";
 
 const initialState = {
-  postsData: [{
+  postsData: [
+    {
       id: 1,
       likes: 3,
       text: "post one",
@@ -51,28 +49,35 @@ const profileReducer = (state = initialState, action) => {
       const post = action.post;
       return {
         ...state,
-        postsData: [...state.postsData, {
-          id: 7,
-          likes: 0,
-          text: post
-        }],
+        postsData: [
+          ...state.postsData,
+          {
+            id: 7,
+            likes: 0,
+            text: post,
+          },
+        ],
       };
     case SET_USER_PROFILE:
       return {
-        ...state, profile: action.profile
+        ...state,
+        profile: action.profile,
       };
     case SET_USER_STATUS:
       return {
-        ...state, status: action.status
+        ...state,
+        status: action.status,
       };
-      case DELETE_POST:
+    case DELETE_POST:
       return {
-        ...state, postsData: state.postsData.filter(item => item.id !== action.postId)
-      }
-      case SAVE_PHOTO_SUCCESS:
-        return {
-          ...state, profile: {...state.profile, photos: action.photos}
-        }
+        ...state,
+        postsData: state.postsData.filter((item) => item.id !== action.postId),
+      };
+    case SAVE_PHOTO_SUCCESS:
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.photos },
+      };
     default:
       return state;
   }
@@ -97,48 +102,47 @@ export const setStatus = (status) => ({
 export const savePhotoSuccess = (photos) => ({
   type: SAVE_PHOTO_SUCCESS,
   photos: photos,
-})
+});
 
 export const getProfile = (userId) => {
   return async (dispatch) => {
     const data = await UsersAPI.getUserProfile(userId);
-      dispatch(setUserProfile(data));
+    dispatch(setUserProfile(data));
   };
 };
 
 export const getStatus = (userId) => {
   return async (dispatch) => {
     const data = await profileAPI.getUserStatus(userId);
-      dispatch(setStatus(data));
+    dispatch(setStatus(data));
   };
 };
 
 export const updateStatus = (status) => {
   return async (dispatch) => {
     const data = await profileAPI.updateUserStatus(status);
-      if (data.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
+    if (data.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
   };
 };
 
 export const savePhoto = (file) => {
   return async (dispatch) => {
     const data = await profileAPI.savePhoto(file);
-      if (data.resultCode === 0) {
-        dispatch(savePhotoSuccess(data.data.photos));
-      }
+    if (data.resultCode === 0) {
+      dispatch(savePhotoSuccess(data.data.photos));
+    }
   };
 };
 
-export const saveProfileData = (profile) => {
-  return async (dispatch, getState) => {
+export const saveProfileData = (profile, userId) => {
+  return async (dispatch) => {
     const data = await profileAPI.saveProfile(profile);
-      if (data.resultCode === 0) {
-        debugger;
-        dispatch(getProfile(getState().auth.userId));
-      }
+    if (data.resultCode === 0) {
+      dispatch(getProfile(userId));
+    }
   };
-}
+};
 
 export default profileReducer;
