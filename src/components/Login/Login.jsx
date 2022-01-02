@@ -7,11 +7,12 @@ import style from "./Login.module.css";
 
 const mapStateToProps = (state) => {
   return {
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth,
   };
 };
 
-const Login = ({ login, isAuth }) => {
+const Login = ({ login, isAuth, captchaUrl }) => {
   const btntext = "Log In";
   if (isAuth) {
     return <Navigate to={"/profile"} />;
@@ -20,7 +21,11 @@ const Login = ({ login, isAuth }) => {
     <div className={style.wrapper}>
       <div className={style.inner}>
         <h1 className={style.title}>Please login</h1>
-        <LoginFormBase btntext={btntext} login={login} />
+        <LoginFormBase
+          btntext={btntext}
+          login={login}
+          captchaUrl={captchaUrl}
+        />
       </div>
     </div>
   );

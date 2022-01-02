@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import style from "./LoginFormBase.module.css";
 
-const LoginFormBase = ({ btntext, login }) => (
+const LoginFormBase = ({ btntext, login, captchaUrl }) => (
   <>
     <Formik
       initialValues={{
@@ -28,6 +28,10 @@ const LoginFormBase = ({ btntext, login }) => (
           {btntext}
         </button>
         <Field type="checkbox" name="rememberMe" /> Remember me
+        {captchaUrl && <img src={captchaUrl} />}
+        {captchaUrl && (
+          <Field name="captcha" placeholder="symbols from image" />
+        )}
       </Form>
     </Formik>
   </>
