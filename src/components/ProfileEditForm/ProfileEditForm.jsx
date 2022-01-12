@@ -1,5 +1,4 @@
 import React from "react";
-import style from "./ProfileEditForm.module.css";
 import ProfileEditFormBase from "../common/Form/ProfileEditFormBase";
 
 const ProfileEditForm = ({ profile, onEditProfileSubmit }) => {

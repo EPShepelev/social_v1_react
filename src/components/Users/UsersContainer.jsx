@@ -53,7 +53,7 @@ const UsersContainer = ({
 
   useEffect(() => {
     getUsers(currentPage, pageSize);
-  }, []);
+  }, [currentPage, pageSize, getUsers]);
 
   return (
     <>

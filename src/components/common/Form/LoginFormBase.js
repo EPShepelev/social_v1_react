@@ -28,7 +28,7 @@ const LoginFormBase = ({ btntext, login, captchaUrl }) => (
           {btntext}
         </button>
         <Field type="checkbox" name="rememberMe" /> Remember me
-        {captchaUrl && <img src={captchaUrl} />}
+        {captchaUrl && <img src={captchaUrl} alt="captcha text" />}
         {captchaUrl && (
           <Field name="captcha" placeholder="symbols from image" />
         )}

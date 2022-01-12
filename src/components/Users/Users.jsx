@@ -25,6 +25,7 @@ const Users = ({
         < Paginations pageSize={pageSize} totalItemsCount={totalUsersCount} currentPage={currentPage} onPageChanged={onPageChanged} />
         {users.map((user) => (
           <User
+          className={style.active}
             key={user.id}
             user={user}
             follow={follow}

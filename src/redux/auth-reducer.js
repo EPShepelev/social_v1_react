@@ -64,8 +64,8 @@ export const login = (email, password, rememberMe, captcha) => {
       if (data.resultCode === 10) {
         dispatch(getCaptchaUrl);
       }
-      const message =
-        data.messages.length > 0 ? data.messages[0] : "Some error";
+      // const message =
+      //   data.messages.length > 0 ? data.messages[0] : "Some error";
       // dispatch(stopSubmiting)
     }
   };

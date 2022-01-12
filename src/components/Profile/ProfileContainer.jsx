@@ -42,7 +42,7 @@ const ProfileContainer = ({
   useEffect(() => {
     getProfile(id);
     getStatus(id);
-  }, [id]);
+  }, [id, profile, getProfile, getStatus]);
 
   return (
     <Profile

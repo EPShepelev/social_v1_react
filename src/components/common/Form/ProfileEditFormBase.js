@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import style from "./ProfileEditFormBase.module.css";
 import { textFieldValidate } from "../../../utils/validators/textFieldValidate";
 
@@ -63,13 +63,6 @@ const ProfileEditFormBase = ({ btntext, profile, onEditProfileSubmit }) => (
             className={style.inputField}
           />
           {errors.github && touched.github && errors.github}
-          {/* <Field name="contacts.vk" placeholder="vk link" value={values.contacts.vk}  onChange={handleChange} onBlur={handleBlur} className={style.inputField} />
-        <Field name="contacts.facebook" placeholder="facebook link" value={values.contacts.facebook}  onChange={handleChange} onBlur={handleBlur} className={style.inputField} />
-        <Field name="contacts.instagram" placeholder="instagram link" value={values.contacts.instagram}  onChange={handleChange} onBlur={handleBlur} className={style.inputField} />
-        <Field name="contacts.twitter" placeholder="twitter link" value={values.contacts.twitter}  onChange={handleChange} onBlur={handleBlur} className={style.inputField} />
-        <Field name="contacts.website" placeholder="website link" value={values.contacts.website}  onChange={handleChange} onBlur={handleBlur} className={style.inputField} />
-        <Field name="contacts.youtube" placeholder="youtube link" value={values.contacts.youtube}  onChange={handleChange} onBlur={handleBlur} className={style.inputField} />
-        <Field name="contacts.mainLink" placeholder="mainLink" value={values.contacts.mainLink}  onChange={handleChange} onBlur={handleBlur} className={style.inputField} /> */}
           <button
             type="submit"
             disabled={isSubmitting}
