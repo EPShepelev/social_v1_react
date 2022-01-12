@@ -136,10 +136,11 @@ export const savePhoto = (file) => {
   };
 };
 
-export const saveProfileData = (profile, userId) => {
-  return async (dispatch) => {
+export const saveProfileData = (profile) => {
+  return async (dispatch, getState) => {
+    const userId = getState().auth.userId;
     const data = await profileAPI.saveProfile(profile);
-    if (data.resultCode === 0) {
+    if (data.data.resultCode === 0) {
       dispatch(getProfile(userId));
     }
   };
