@@ -1,5 +1,18 @@
 const ADD_MESSAGE = "social-network/dialogs/ADD-MESSAGE";
 
+export type InitialStateType = typeof initialState
+
+type DialogsDataType = {
+  id: number
+  name: string
+}
+
+type MessagesDataType = {
+  id: number
+  text: string
+  isYours: boolean
+}
+
 const initialState = {
   dialogsData: [
     {
@@ -26,7 +39,7 @@ const initialState = {
       id: 6,
       name: "Alex",
     },
-  ],
+  ] as Array <DialogsDataType>,
   messagesData: [
     {
       id: 1,
@@ -53,10 +66,10 @@ const initialState = {
       text: "New content",
       isYours: false,
     },
-  ],
+  ] as Array <MessagesDataType>,
 };
 
-const dialogsReducer = (state = initialState, action) => {
+const dialogsReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case ADD_MESSAGE:
       const text = action.text;
@@ -72,7 +85,12 @@ const dialogsReducer = (state = initialState, action) => {
   }
 };
 
-export const addMessageActionCreator = (text) => ({
+type AddMessageActionCreatorType = {
+  type: typeof ADD_MESSAGE
+  text: string
+}
+
+export const addMessageActionCreator = (text: string): AddMessageActionCreatorType => ({
   type: ADD_MESSAGE,
   text: text,
 });
