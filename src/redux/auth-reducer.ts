@@ -3,21 +3,15 @@ import { AuthAPI, SecurityAPI } from "../api/api";
 const SET_USER_DATA = "social-network/auth/SET_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "social-network/auth/GET_CAPTCHA_URL_SUCCESS";
 
-export type InitialStateType = {
-  userId: number | null
-  login: string | null
-  email: string | null
-  isAuth: boolean
-  captchaUrl: string | null
-}
-
-const initialState: InitialStateType = {
-  userId: null,
-  login: null,
-  email: null,
+const initialState = {
+  userId: null as number | null,
+  login: null as string | null,
+  email: null as string | null,
   isAuth: false,
-  captchaUrl: null,
+  captchaUrl: null as string | null,
 };
+
+export type InitialStateType = typeof initialState;
 
 const authReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
@@ -37,11 +31,13 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
 };
 
 type getCaptchaUrlSuccessActionType = {
-  type: typeof GET_CAPTCHA_URL_SUCCESS
-  payload: { captchaUrl: string | null }
-}
+  type: typeof GET_CAPTCHA_URL_SUCCESS;
+  payload: { captchaUrl: string | null };
+};
 
-export const setCaptchaUrlSuccess = (captchaUrl: string) : getCaptchaUrlSuccessActionType => ({
+export const setCaptchaUrlSuccess = (
+  captchaUrl: string
+): getCaptchaUrlSuccessActionType => ({
   type: GET_CAPTCHA_URL_SUCCESS,
   payload: {
     captchaUrl,
@@ -49,18 +45,23 @@ export const setCaptchaUrlSuccess = (captchaUrl: string) : getCaptchaUrlSuccessA
 });
 
 type setAuthUserDataActionPayloadType = {
-  userId: number | null
-  login: string | null
-  email: string | null
-  isAuth: boolean
-}
+  userId: number | null;
+  login: string | null;
+  email: string | null;
+  isAuth: boolean;
+};
 
 type setAuthUserDataActionType = {
-  type: typeof SET_USER_DATA
-  payload: setAuthUserDataActionPayloadType
-}
+  type: typeof SET_USER_DATA;
+  payload: setAuthUserDataActionPayloadType;
+};
 
-export const setAuthUserData = (userId: number | null, login: string | null, email: string | null, isAuth: boolean) : setAuthUserDataActionType => ({
+export const setAuthUserData = (
+  userId: number | null,
+  login: string | null,
+  email: string | null,
+  isAuth: boolean
+): setAuthUserDataActionType => ({
   type: SET_USER_DATA,
   payload: {
     userId,
@@ -80,7 +81,12 @@ export const getAuthUser = () => {
   };
 };
 
-export const login = (email: string | null, password: string | null, rememberMe: boolean, captcha: any ) => {
+export const login = (
+  email: string | null,
+  password: string | null,
+  rememberMe: boolean,
+  captcha: any
+) => {
   return async (dispatch: any) => {
     const data = await AuthAPI.login(email, password, rememberMe, captcha);
     if (data.resultCode === 0) {

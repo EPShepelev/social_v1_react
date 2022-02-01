@@ -1,3 +1,8 @@
+type FriendsListType = {
+  id: number;
+  name: string;
+};
+
 const initialState = {
   friendsList: [
     {
@@ -20,8 +25,10 @@ const initialState = {
       id: 5,
       name: "How's your grid?",
     },
-  ],
+  ] as Array<FriendsListType>,
 };
+
+export type InitialStateType = typeof initialState;
 
 const friendsReducer = (state = initialState, action) => {
   switch (action.type) {

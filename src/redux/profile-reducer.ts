@@ -1,5 +1,7 @@
 import { UsersAPI, profileAPI } from "../api/api";
 
+import { PostsDataType, PhotosType, ProfileType } from "../types/types";
+
 const ADD_POST = "social-network/profile/ADD-POST";
 const SET_USER_PROFILE = "social-network/profile/SET_USER_PROFILE";
 const SET_USER_STATUS = "social-network/profile/SET_USER_STATUS";
@@ -38,12 +40,17 @@ const initialState = {
       likes: 42,
       text: "it works!",
     },
-  ],
-  profile: null,
+  ] as Array<PostsDataType>,
+  profile: null as ProfileType | null,
   status: "",
 };
 
-const profileReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState;
+
+const profileReducer = (
+  state = initialState,
+  action: any
+): InitialStateType => {
   switch (action.type) {
     case ADD_POST:
       const post = action.post;
@@ -76,50 +83,77 @@ const profileReducer = (state = initialState, action) => {
     case SAVE_PHOTO_SUCCESS:
       return {
         ...state,
-        profile: { ...state.profile, photos: action.photos },
+        profile: { ...state.profile, photos: action.photos } as ProfileType,
       };
     default:
       return state;
   }
 };
 
-export const addPostActionCreator = (post) => ({
+type AddPostActionType = {
+  type: typeof ADD_POST;
+  post: string;
+};
+type SetUserProfileActionType = {
+  type: typeof SET_USER_PROFILE;
+  profile: ProfileType;
+};
+type SetStatusActionType = {
+  type: typeof SET_USER_STATUS;
+  status: string;
+};
+type DeletePostActionType = {
+  type: typeof DELETE_POST;
+  postId: number;
+};
+type SavePhotoSuccessActionType = {
+  type: typeof SAVE_PHOTO_SUCCESS;
+  photos: PhotosType;
+};
+
+export const addPostActionCreator = (post: string): AddPostActionType => ({
   type: ADD_POST,
   post: post,
 });
-export const deletePostActionCreator = (postId) => ({
-  type: DELETE_POST,
-  postId: postId,
-});
-export const setUserProfile = (profile) => ({
+export const setUserProfile = (
+  profile: ProfileType
+): SetUserProfileActionType => ({
   type: SET_USER_PROFILE,
   profile: profile,
 });
-export const setStatus = (status) => ({
+export const setStatus = (status: string): SetStatusActionType => ({
   type: SET_USER_STATUS,
   status: status,
 });
-export const savePhotoSuccess = (photos) => ({
+export const deletePostActionCreator = (
+  postId: number
+): DeletePostActionType => ({
+  type: DELETE_POST,
+  postId: postId,
+});
+export const savePhotoSuccess = (
+  photos: PhotosType
+): SavePhotoSuccessActionType => ({
   type: SAVE_PHOTO_SUCCESS,
   photos: photos,
 });
 
-export const getProfile = (userId) => {
-  return async (dispatch) => {
+export const getProfile = (userId: number) => {
+  return async (dispatch: any) => {
     const data = await UsersAPI.getUserProfile(userId);
     dispatch(setUserProfile(data));
   };
 };
 
-export const getStatus = (userId) => {
-  return async (dispatch) => {
+export const getStatus = (userId: number) => {
+  return async (dispatch: any) => {
     const data = await profileAPI.getUserStatus(userId);
     dispatch(setStatus(data));
   };
 };
 
-export const updateStatus = (status) => {
-  return async (dispatch) => {
+export const updateStatus = (status: string) => {
+  return async (dispatch: any) => {
     const data = await profileAPI.updateUserStatus(status);
     if (data.resultCode === 0) {
       dispatch(setStatus(status));
@@ -127,8 +161,8 @@ export const updateStatus = (status) => {
   };
 };
 
-export const savePhoto = (file) => {
-  return async (dispatch) => {
+export const savePhoto = (file: any) => {
+  return async (dispatch: any) => {
     const data = await profileAPI.savePhoto(file);
     if (data.resultCode === 0) {
       dispatch(savePhotoSuccess(data.data.photos));
@@ -136,8 +170,8 @@ export const savePhoto = (file) => {
   };
 };
 
-export const saveProfileData = (profile) => {
-  return async (dispatch, getState) => {
+export const saveProfileData = (profile: ProfileType) => {
+  return async (dispatch: any, getState: any) => {
     const userId = getState().auth.userId;
     const data = await profileAPI.saveProfile(profile);
     if (data.data.resultCode === 0) {
